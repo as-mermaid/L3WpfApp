@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +43,7 @@ namespace L3WpfApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (textBlock !=null)
+            if (textBlock != null)
             {
                 if (textBlock.FontWeight == FontWeights.Bold)
                     textBlock.FontWeight = FontWeights.Normal;
@@ -76,13 +78,34 @@ namespace L3WpfApp
         {
             if (textBlock != null)
                 textBlock.Foreground = Brushes.Black;
-            
+
         }
 
         private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
         {
             if (textBlock != null)
                 textBlock.Foreground = Brushes.Red;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+                textBlock.Text = File.ReadAllText(openFileDialog.FileName);
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
+            if (saveFileDialog.ShowDialog() == true)
+                File.WriteAllText(saveFileDialog.FileName, textBlock.Text);
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
