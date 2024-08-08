@@ -6,6 +6,12 @@
         xmlns:local="clr-namespace:L3WpfApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.CommandBindings>
+        <CommandBinding Command="Open" Executed="MenuItem_Click"/>
+        <CommandBinding Command="Save" Executed="MenuItem_Click_1"/>
+        <CommandBinding Command="Close" Executed="MenuItem_Click_2"/>
+        
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,12 +20,16 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Margin="3" Padding="3">
             <MenuItem Header="_Файл">
-                <MenuItem Header="_Открыть" Click="MenuItem_Click"/>
-                <MenuItem Header="_Сохранить" Click="MenuItem_Click_1"/>
+                <MenuItem Header="_Открыть" Command="Open"/>
+                <MenuItem Header="_Сохранить" Command="Save"/>
                 <Separator/>
-                <MenuItem Header="_Закрыть" Click="MenuItem_Click_2"/>
+                <MenuItem Header="_Закрыть" Command="Close"/>
             </MenuItem>
-            <MenuItem Header="_Правка"/>
+            <MenuItem Header="_Правка">
+                <MenuItem Command="Copy"/>
+                <MenuItem Command="Paste"/>
+                <MenuItem Command="Cut"/>
+            </MenuItem>
             <MenuItem Header="_Справка"/>
 
         </Menu>
