@@ -107,5 +107,13 @@ namespace L3WpfApp
         {
             Application.Current.Shutdown();
         }
+
+        private void themes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+             Application.Current.Resources.Clear();
+             Uri theme = new Uri(themes.SelectedIndex == 0 ? "Light.xaml" : "Dark.xaml", UriKind.Relative);
+             ResourceDictionary themeDictionary = Application.LoadComponent(theme) as ResourceDictionary;   
+             Application.Current.Resources.MergedDictionaries.Add(themeDictionary); 
+        }
     }
 }
