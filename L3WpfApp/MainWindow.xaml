@@ -10,7 +10,7 @@
         <CommandBinding Command="Open" Executed="MenuItem_Click"/>
         <CommandBinding Command="Save" Executed="MenuItem_Click_1"/>
         <CommandBinding Command="Close" Executed="MenuItem_Click_2"/>
-        
+
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -36,19 +36,19 @@
         <ToolBarTray Grid.Row="1">
             <ToolBar Margin="5" Padding="5">
                 <ComboBox 
+                    x:Name="cbFont"
                     Margin="5" 
                     Padding="5" 
                     SelectedIndex="0" 
                     Width="200" 
-                    SelectionChanged="ComboBox_SelectionChanged"
                     ItemsSource="{StaticResource fonts}"/>
 
                 <ComboBox 
+                    x:Name="cbSize"
                     Margin="5" 
                     Padding="5" 
                     SelectedIndex="2" 
                     Width="50" 
-                    SelectionChanged="ComboBox_SelectionChanged_1"
                     ItemsSource="{StaticResource sizes}"/>
 
             </ToolBar>
@@ -77,6 +77,8 @@
             </ToolBar>
         </ToolBarTray>
         <TextBox x:Name="textBlock" Grid.Row="2" Margin="5" Padding="5" 
-                   FontFamily="Arial" FontSize="16" TextWrapping="Wrap"/>
+                   FontFamily="{Binding ElementName=cbFont, Path=Text}" 
+                 FontSize="{Binding ElementName=cbSize, Path=Text}" 
+                 TextWrapping="Wrap"/>
     </Grid>
 </Window>
